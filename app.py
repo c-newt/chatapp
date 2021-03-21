@@ -5,6 +5,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'joesecret'
 socketio = SocketIO(app, cors_allowed_origins='*')
 
+@app.route('/')
+def index():
+    return flask.render_template('index.html')
+
 @socketio.on('message')
 def handleMessage(msg):
     print('Message: ' + msg)
