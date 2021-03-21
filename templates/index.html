@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>eyyy a chatroom welcome</title>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js" integrity="sha384-DkkWv9oJFWLIydBXXjkBWnG1/fuVhw8YPBq37uvvD6WSYRFRqr21eY5Dg9ZhmWdy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<script>
+var user = getElementById("uname").value;
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var socket = io.connect('http://127.0.0.1:5000');
+
+	socket.on('connect', function() {
+		socket.send('User has connected!');
+	});
+
+	socket.on('message', function(msg) {
+		$("#messages").append('<li>'+msg+'</li>');
+		console.log('Received message');			
+	});
+
+	$('#sendbutton').on('click', function() {
+		socket.send($('#uname').val() + ": " + $('#myMessage').val());
+		$('#myMessage').val('');
+		$('#uname').val('');
+	});
+
+});
+</script>
+<ul id="messages"></ul>
+<input type="text" id="uname">
+<input type="text" id="myMessage">
+<button id="sendbutton">Send</button>
+</body>
+</html>
