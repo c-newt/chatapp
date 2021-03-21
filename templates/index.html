@@ -8,7 +8,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-	var socket = io.connect('https://localhost:5000', {secure: true});
+	var socket = io.connect('https://pipecord.herokuapp.com:5000', {secure: true});
 
 	socket.on('connect', function() {
 		socket.send('User has connected!');
