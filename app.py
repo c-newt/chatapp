@@ -7,7 +7,7 @@ socketio = SocketIO(app, cors_allowed_origins='*')
 
 @app.route('/')
 def index():
-    return flask.render_template('index.html')
+    return render_template('index.html')
 
 @socketio.on('message')
 def handleMessage(msg):
